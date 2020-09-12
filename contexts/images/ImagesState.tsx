@@ -20,7 +20,7 @@ const ImagesDispatchContext = createContext(
 const reducer = (state: ImagesState, action: ImagesAction) => {
   switch (action.type) {
     case "UPLOAD":
-      return { imageFiles: action.payload };
+      return { imageFiles: state.imageFiles.concat(action.payload) };
     case "RESET":
       return { imageFiles: [] };
     default:

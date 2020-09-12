@@ -1,10 +1,14 @@
 import { useRef } from "react";
 import { UploadButton } from "../common/UploadButton";
-import { useDispatchImages } from "../../contexts/images/ImagesState";
+import {
+  useDispatchImages,
+  useImages,
+} from "../../contexts/images/ImagesState";
 
 import { ImageFile } from "../../contexts/images/ImageFile";
 
 export const ImageUploadButton = () => {
+  const imagesState = useImages();
   const dispatch = useDispatchImages();
 
   const hiddenFileInput = useRef(null);
@@ -42,7 +46,17 @@ export const ImageUploadButton = () => {
         onChange={uploadImageFiles}
         style={{ display: "none" }}
       />
-      <UploadButton type="image" handleOnClick={handleButtonClick} />
+      <UploadButton handleOnClick={handleButtonClick}>
+        Image
+        <span
+          className="inline-flex rounded-full bg-blue-700 w-6 h-6 text-white text-xs items-center justify-center"
+          style={{ marginLeft: "0.5rem" }}
+        >
+          {imagesState.imageFiles.length == 0
+            ? null
+            : imagesState.imageFiles.length}
+        </span>
+      </UploadButton>
     </div>
   );
 };
