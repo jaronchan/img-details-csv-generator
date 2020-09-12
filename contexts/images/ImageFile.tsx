@@ -1,4 +1,4 @@
-export default interface ImageType {
+export interface ImageFile {
   dataUrl: string;
   fileName: string;
 }

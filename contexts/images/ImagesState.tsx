@@ -1,30 +1,35 @@
-import { useReducer, useContext, createContext } from "react";
-import ImageFile from "./ImageFile";
+import { useReducer, useContext, createContext, Dispatch } from "react";
+import { ImageFile } from "./ImageFile";
 
 export type ImagesState = {
-  imageFiles: ImageFile[];
+  imageFiles: Array<ImageFile>;
 };
 
 const initialState = {
   imageFiles: [],
 };
 
+export type ImagesAction =
+  | { type: "UPLOAD"; payload: Array<ImageFile> }
+  | { type: "RESET" };
 const ImagesStateContext = createContext<ImagesState>(initialState);
-const ImagesDispatchContext = createContext({});
+const ImagesDispatchContext = createContext(
+  (() => null) as Dispatch<ImagesAction>
+);
 
-const reducer = (state, action) => {
+const reducer = (state: ImagesState, action: ImagesAction) => {
   switch (action.type) {
     case "UPLOAD":
-      return action.payload;
+      return { imageFiles: action.payload };
     case "RESET":
-      return [];
+      return { imageFiles: [] };
     default:
-      throw new Error(`Unknown action: ${action.type}`);
+      throw new Error(`Unknown action: ${action["type"]}`);
   }
 };
 
 export const ImagesStateProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, []);
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <ImagesDispatchContext.Provider value={dispatch}>
       <ImagesStateContext.Provider value={state}>
