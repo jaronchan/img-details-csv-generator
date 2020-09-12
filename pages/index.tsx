@@ -1,5 +1,8 @@
 import Head from "next/head";
 // import styles from "../styles/Home.module.css";
+import { Card } from "../components/common/Card";
+import { Hero } from "../components/layout/Hero";
+import { UploadButton } from "../components/common/UploadButton";
 
 export default function Home() {
   return (
@@ -8,31 +11,23 @@ export default function Home() {
         <title>Image Details Generator</title>
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
-      <div className="container"></div>
-      <div className="flex z-10">
-        <div className="max-w-sm rounded overflow-hidden shadow-lg">
-          <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-            <p className="text-gray-700 text-base">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Voluptatibus quia, nulla! Maiores et perferendis eaque,
-              exercitationem praesentium nihil.
-            </p>
+      <div className="none:container bg-gray-100">
+        <Hero>
+          <Card className="max-w-2xl">
+            <h1 className="text-4xl font-bold">Generate a image details CSV</h1>
+          </Card>
+        </Hero>
+        <div className="flex">
+          <div className="w-1/4 m-4"></div>
+          <div className="w-1/4 m-4">
+            <UploadButton type="image" handleOnClick={() => {}} />
           </div>
-          <div className="px-6 pt-4 pb-2">
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              #photography
-            </span>
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              #travel
-            </span>
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              #winter
-            </span>
+          <div className="w-1/4 m-4">
+            <UploadButton type="csv" handleOnClick={() => {}} />
           </div>
+          <div className="w-1/4 m-4"></div>
         </div>
       </div>
-      <div className="container"></div>
     </div>
   );
 }
