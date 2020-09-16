@@ -18,7 +18,7 @@ export const DetailsTable = () => {
         <div className="overflow-y-auto scrollbar-w-2 scrollbar-track-gray-lighter scrollbar-thumb-rounded scrollbar-thumb-gray scrolling-touch">
           <table className="w-full text-left border-collapse">
             <DetailsTableHeader fields={dataFieldsState.dataFields} />
-            <tbody className="align-baseline">
+            <tbody className="align-middle">
               {imagesState.imageFiles.map((imageFile) => {
                 return (
                   <DetailsTableRow

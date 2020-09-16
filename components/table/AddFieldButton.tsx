@@ -30,15 +30,25 @@ export const AddFieldButton = () => {
   };
   {
     return isInput ? (
-      <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-        name="fieldName"
-        type="text"
-        placeholder="new field"
-        value={fieldValue}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyPress}
-      />
+      <div className="flex flex-row">
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+          name="fieldName"
+          type="text"
+          placeholder="new field"
+          value={fieldValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
+          style={{ minWidth: "8rem" }}
+        />
+        <button
+          type="button"
+          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded w-full"
+          onClick={resetState}
+        >
+          Cancel
+        </button>
+      </div>
     ) : (
       <button
         type="button"
