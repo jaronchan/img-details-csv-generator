@@ -6,10 +6,16 @@ import {
 } from "../../contexts/images/ImagesState";
 
 import { ImageFile } from "../../contexts/images/ImageFile";
+import {
+  useDataTable,
+  useDispatchDataTable,
+} from "../../contexts/table/DataTableState";
 
 export const ImageUploadButton = () => {
   const imagesState = useImages();
-  const dispatch = useDispatchImages();
+  const dataTableState = useDataTable();
+  const imageDispatch = useDispatchImages();
+  const dataTableDispatch = useDispatchDataTable();
 
   const hiddenFileInput = useRef(null);
   const handleButtonClick = (event) => {
@@ -30,9 +36,16 @@ export const ImageUploadButton = () => {
     });
 
     // Dispatch ImageFile
-    dispatch({
+    imageDispatch({
       type: "UPLOAD",
       payload: parsedImages,
+    });
+
+    dataTableDispatch({
+      type: "GENERATE",
+      payload: parsedImages.map((image) => {
+        return new Map<string, string>().set("fileName", image.fileName);
+      }),
     });
   };
 

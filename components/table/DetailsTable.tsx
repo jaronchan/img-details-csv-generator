@@ -5,11 +5,13 @@ import { DetailsTableHeader } from "../table/DetailsTableHeader";
 import { DetailsTableRow } from "../table/DetailsTableRow";
 
 import { useDataFields } from "../../contexts/table/DataFieldsState";
+import { useDataTable } from "../../contexts/table/DataTableState";
 
 export const DetailsTable = () => {
   const imagesState = useImages();
   const dataFieldsState = useDataFields();
-  console.log(imagesState);
+  const dataTableState = useDataTable();
+  console.log(dataTableState);
   if (imagesState.imageFiles.length == 0) {
     return null;
   } else {
@@ -25,6 +27,7 @@ export const DetailsTable = () => {
                     imgUrl={imageFile.dataUrl}
                     fileName={imageFile.fileName}
                     fields={dataFieldsState.dataFields}
+                    key={imageFile.fileName}
                   />
                 );
               })}

@@ -1,11 +1,13 @@
 import { useState, MouseEvent, FormEvent, KeyboardEvent } from "react";
 import { useDispatchDataFields } from "../../contexts/table/DataFieldsState";
+import { useDispatchDataTable } from "../../contexts/table/DataTableState";
 
 export const AddFieldButton = () => {
-  const dispatch = useDispatchDataFields();
+  const dataFieldsDispatch = useDispatchDataFields();
+  const dataTableDispatch = useDispatchDataTable();
 
   const [isInput, setInputMode] = useState(false);
-  const [fieldValue, setFieldValue] = useState<string>(null);
+  const [fieldValue, setFieldValue] = useState<string>("");
 
   const handleButtonClick = () => {
     setInputMode(true);
@@ -19,14 +21,15 @@ export const AddFieldButton = () => {
     if (event.key === "Enter") {
       event.preventDefault();
       event.stopPropagation();
-      dispatch({ type: "ADD", payload: fieldValue });
+      dataFieldsDispatch({ type: "ADD", payload: fieldValue });
+      dataTableDispatch({ type: "NEW_FIELD", payload: fieldValue });
       resetState();
     }
   };
 
   const resetState = () => {
     setInputMode(false);
-    setFieldValue(null);
+    setFieldValue("");
   };
   {
     return isInput ? (

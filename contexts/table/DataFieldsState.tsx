@@ -26,7 +26,7 @@ const reducer = (state: DataFieldsState, action: DataFieldsAction) => {
     case "ADD":
       return { dataFields: [...state.dataFields, action.payload] };
     case "RESET":
-      return { dataFields: [] as string[] };
+      return initialState;
     default:
       throw new Error(`Unknown action: ${action["type"]}`);
   }
