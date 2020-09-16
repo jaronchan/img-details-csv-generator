@@ -5,6 +5,7 @@ import { Hero } from "../components/layout/Hero";
 import { UploadButton } from "../components/common/UploadButton";
 import { ImageUploadButton } from "../components/files/ImageUploadButton";
 import { useImages } from "../contexts/images/ImagesState";
+import { DetailsTable } from "../components/table/DetailsTable";
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
             <h1 className="text-4xl font-bold">Generate a image details CSV</h1>
           </Card>
         </Hero>
-        <div className="flex">
+        <div className="flex mb-16">
           <div className="w-1/4 m-4"></div>
           <div className="w-1/4 m-4">
             <ImageUploadButton />
@@ -29,6 +30,7 @@ export default function Home() {
           </div>
           <div className="w-1/4 m-4"></div>
         </div>
+        <DetailsTable />
       </div>
     </div>
   );

@@ -48,14 +48,14 @@ export const ImageUploadButton = () => {
       />
       <UploadButton handleOnClick={handleButtonClick}>
         Image
-        <span
-          className="inline-flex rounded-full bg-blue-700 w-6 h-6 text-white text-xs items-center justify-center"
-          style={{ marginLeft: "0.5rem" }}
-        >
-          {imagesState.imageFiles.length == 0
-            ? null
-            : imagesState.imageFiles.length}
-        </span>
+        {imagesState.imageFiles.length == 0 ? null : (
+          <span
+            className="inline-flex rounded-full bg-blue-700 w-6 h-6 text-white text-xs items-center justify-center"
+            style={{ marginLeft: "0.5rem" }}
+          >
+            {imagesState.imageFiles.length}
+          </span>
+        )}
       </UploadButton>
     </div>
   );
