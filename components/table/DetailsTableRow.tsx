@@ -1,15 +1,34 @@
+import { FormEvent } from "react";
+import {
+  useDataTable,
+  useDispatchDataTable,
+} from "../../contexts/table/DataTableState";
+
 export const DetailsTableRow = ({
+  index,
   imgUrl,
   fileName,
   fields,
-}: //   fields,
-//   data,
-{
+}: {
+  index: number;
   imgUrl: string;
   fileName: string;
   fields: string[];
-  //   data: string[],
 }) => {
+  const dataTableState = useDataTable();
+  const dataTableDispatch = useDispatchDataTable();
+
+  const handleInputChange = (event: FormEvent<HTMLInputElement>): void => {
+    dataTableDispatch({
+      type: "UPDATE_VALUE",
+      payload: {
+        index: index,
+        key: event.currentTarget.name,
+        value: event.currentTarget.value,
+      },
+    });
+  };
+
   return (
     <tr>
       <td className="p-2 font-mono text-xs text-purple-700">
@@ -23,15 +42,16 @@ export const DetailsTableRow = ({
       <td className="p-2 font-mono text-xs text-blue-700 whitespace-no-wrap">
         {fileName}
       </td>
-      {fields.map((field, index) => {
+      {fields.map((field) => {
         return (
           <td key={field + index} style={{ minWidth: "12rem" }}>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
               placeholder={field}
-              // value={fieldValue}
-              // onChange={handleInputChange}
+              value={dataTableState.dataTable[index][field]}
+              name={field}
+              onChange={handleInputChange}
               // onKeyDown={handleKeyPress}
             />
           </td>

@@ -6,14 +6,10 @@ import {
 } from "../../contexts/images/ImagesState";
 
 import { ImageFile } from "../../contexts/images/ImageFile";
-import {
-  useDataTable,
-  useDispatchDataTable,
-} from "../../contexts/table/DataTableState";
+import { useDispatchDataTable } from "../../contexts/table/DataTableState";
 
 export const ImageUploadButton = () => {
   const imagesState = useImages();
-  const dataTableState = useDataTable();
   const imageDispatch = useDispatchImages();
   const dataTableDispatch = useDispatchDataTable();
 

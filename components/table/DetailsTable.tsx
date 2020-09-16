@@ -21,9 +21,10 @@ export const DetailsTable = () => {
           <table className="w-full text-left border-collapse">
             <DetailsTableHeader fields={dataFieldsState.dataFields} />
             <tbody className="align-middle">
-              {imagesState.imageFiles.map((imageFile) => {
+              {imagesState.imageFiles.map((imageFile, index) => {
                 return (
                   <DetailsTableRow
+                    index={index}
                     imgUrl={imageFile.dataUrl}
                     fileName={imageFile.fileName}
                     fields={dataFieldsState.dataFields}
