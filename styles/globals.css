@@ -15,3 +15,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+td {
+  border-bottom: 1px solid #e2e8f0;
+}

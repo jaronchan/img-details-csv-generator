@@ -1,4 +1,10 @@
-import { useReducer, useContext, createContext, Dispatch } from "react";
+import {
+  useReducer,
+  useContext,
+  createContext,
+  Dispatch,
+  ReactNode,
+} from "react";
 import { ImageFile } from "./ImageFile";
 
 export type ImagesState = {
@@ -6,7 +12,7 @@ export type ImagesState = {
 };
 
 const initialState = {
-  imageFiles: [],
+  imageFiles: [] as Array<ImageFile>,
 };
 
 export type ImagesAction =
@@ -22,13 +28,13 @@ const reducer = (state: ImagesState, action: ImagesAction) => {
     case "UPLOAD":
       return { imageFiles: state.imageFiles.concat(action.payload) };
     case "RESET":
-      return { imageFiles: [] };
+      return { imageFiles: [] as Array<ImageFile> };
     default:
       throw new Error(`Unknown action: ${action["type"]}`);
   }
 };
 
-export const ImagesStateProvider = ({ children }) => {
+export const ImagesStateProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <ImagesDispatchContext.Provider value={dispatch}>
