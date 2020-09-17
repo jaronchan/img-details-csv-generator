@@ -1,8 +1,6 @@
 import { MouseEvent, ReactNode } from "react";
 
-export type UploadButtonType = "image" | "csv";
-
-export const UploadButton = ({
+export const OutlineButton = ({
   children,
   handleOnClick,
 }: {

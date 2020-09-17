@@ -2,10 +2,11 @@ import Head from "next/head";
 // import styles from "../styles/Home.module.css";
 import { Card } from "../components/common/Card";
 import { Hero } from "../components/layout/Hero";
-import { UploadButton } from "../components/common/UploadButton";
+import { OutlineButton } from "../components/common/OutlineButton";
 import { ImageUploadButton } from "../components/files/ImageUploadButton";
 import { useImages } from "../contexts/images/ImagesState";
 import { DetailsTable } from "../components/table/DetailsTable";
+import { CSVExportButton } from "../components/files/CSVExportButton";
 
 export default function Home() {
   return (
@@ -20,15 +21,30 @@ export default function Home() {
             <h1 className="text-4xl font-bold">Generate a image details CSV</h1>
           </Card>
         </Hero>
-        <div className="flex mb-16">
-          <div className="w-1/4 m-4"></div>
-          <div className="w-1/4 m-4">
+        <div className="flex space-x-4 mb-4">
+          <div className="w-1/4"></div>
+          <div className="w-1/4">
             <ImageUploadButton />
           </div>
-          <div className="w-1/4 m-4">
-            <UploadButton handleOnClick={() => {}}>CSV</UploadButton>
+          <div className="w-1/4">
+            <OutlineButton handleOnClick={() => {}}>CSV</OutlineButton>
           </div>
-          <div className="w-1/4 m-4"></div>
+          <div className="w-1/4"></div>
+        </div>
+        <div className="flex mb-4 space-x-2">
+          <div className="w-1/4"></div>
+          <div className="w-1/2">
+            <OutlineButton handleOnClick={() => {}}>Generate</OutlineButton>
+          </div>
+          <div className="w-1/4"></div>
+        </div>
+        <div className="flex mb-8 space-x-2">
+          <div className="w-1/4"></div>
+          <div className="w-1/2">
+            {/* <OutlineButton handleOnClick={() => {}}>Export</OutlineButton> */}
+            <CSVExportButton />
+          </div>
+          <div className="w-1/4"></div>
         </div>
         <DetailsTable />
       </div>

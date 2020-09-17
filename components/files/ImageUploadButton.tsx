@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { UploadButton } from "../common/UploadButton";
+import { OutlineButton } from "../common/OutlineButton";
 import {
   useDispatchImages,
   useImages,
@@ -55,7 +55,7 @@ export const ImageUploadButton = () => {
         onChange={uploadImageFiles}
         style={{ display: "none" }}
       />
-      <UploadButton handleOnClick={handleButtonClick}>
+      <OutlineButton handleOnClick={handleButtonClick}>
         Image
         {imagesState.imageFiles.length == 0 ? null : (
           <span
@@ -65,7 +65,7 @@ export const ImageUploadButton = () => {
             {imagesState.imageFiles.length}
           </span>
         )}
-      </UploadButton>
+      </OutlineButton>
     </div>
   );
 };
