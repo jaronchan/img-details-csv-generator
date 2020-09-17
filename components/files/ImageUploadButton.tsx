@@ -36,13 +36,6 @@ export const ImageUploadButton = () => {
       type: "UPLOAD",
       payload: parsedImages,
     });
-
-    dataTableDispatch({
-      type: "GENERATE",
-      payload: parsedImages.map((image) => {
-        return new Map<string, string>().set("fileName", image.fileName);
-      }),
-    });
   };
 
   return (

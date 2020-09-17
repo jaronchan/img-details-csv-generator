@@ -7,6 +7,7 @@ import { ImageUploadButton } from "../components/files/ImageUploadButton";
 import { useImages } from "../contexts/images/ImagesState";
 import { DetailsTable } from "../components/table/DetailsTable";
 import { CSVExportButton } from "../components/files/CSVExportButton";
+import { GenerateTableButton } from "../components/table/GenerateTableButton";
 
 export default function Home() {
   return (
@@ -34,7 +35,7 @@ export default function Home() {
         <div className="flex mb-4 space-x-2">
           <div className="w-1/4"></div>
           <div className="w-1/2">
-            <OutlineButton handleOnClick={() => {}}>Generate</OutlineButton>
+            <GenerateTableButton />
           </div>
           <div className="w-1/4"></div>
         </div>

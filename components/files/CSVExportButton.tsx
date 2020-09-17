@@ -7,17 +7,15 @@ export const CSVExportButton = () => {
   const dataTableState = useDataTable();
 
   const hiddenCSVLink = useRef(null);
-  const handleButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleButtonClick = () => {
     hiddenCSVLink.current.link.click();
   };
-
-  const handleImageFilesUpload = (uploadedImageFiles: FileList) => {};
 
   let data = dataTableState.dataTable.map((row) => {
     return Object.fromEntries(row);
   });
 
-  return (
+  return dataTableState.dataTable.length != 0 ? (
     <div className="container">
       <CSVLink
         ref={hiddenCSVLink}
@@ -29,5 +27,9 @@ export const CSVExportButton = () => {
       </CSVLink>
       <OutlineButton handleOnClick={handleButtonClick}>Export</OutlineButton>
     </div>
+  ) : (
+    <OutlineButton disabled handleOnClick={() => {}}>
+      Export
+    </OutlineButton>
   );
 };

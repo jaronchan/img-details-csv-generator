@@ -11,8 +11,10 @@ export const DetailsTable = () => {
   const imagesState = useImages();
   const dataFieldsState = useDataFields();
   const dataTableState = useDataTable();
-  console.log(dataTableState);
-  if (imagesState.imageFiles.length == 0) {
+  if (
+    imagesState.imageFiles.length == 0 ||
+    dataTableState.dataTable.length == 0
+  ) {
     return null;
   } else {
     return (
