@@ -17,6 +17,7 @@ export type DataTableAction =
       type: "UPDATE_VALUE";
       payload: { index: number; key: string; value: string };
     }
+  | { type: "BULK_UPDATE"; payload: Object[] }
   | { type: "RESET" };
 
 const DataTableStateContext = createContext<DataTableState>(initialState);
@@ -34,6 +35,40 @@ const reducer = (state: DataTableState, action: DataTableAction) => {
           return row.set(action.payload, "");
         }),
       };
+    case "BULK_UPDATE":
+      let tempTable = [...state.dataTable];
+      let newFields: string[] = [];
+      Object.keys(action.payload[0]).forEach((key) => {
+        if (key != "fileName" && !tempTable[0].has(key)) {
+          newFields.push(key);
+        }
+      });
+      tempTable = tempTable.map((row) => {
+        newFields.forEach((field) => {
+          return row.set(field, "");
+        });
+        return row;
+      });
+
+      // data matching
+
+      action.payload.forEach((importRow) => {
+        let matchingRow = tempTable.find((tempRow) => {
+          return tempRow.get("fileName") == importRow["fileName"];
+        });
+        if (typeof matchingRow !== "undefined") {
+          Object.keys(importRow).forEach((key) => {
+            if (key != "fileName") {
+              matchingRow.set(key, importRow[key]);
+            }
+          });
+        }
+        console.dir(matchingRow);
+      });
+
+      console.dir(tempTable);
+      console.log("BULK UPDATE DONE");
+      return { dataTable: [...tempTable] };
     case "UPDATE_VALUE":
       let newTable = [...state.dataTable];
       newTable[action.payload.index].set(

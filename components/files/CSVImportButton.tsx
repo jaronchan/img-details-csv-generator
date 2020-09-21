@@ -39,12 +39,17 @@ export const CSVImportButton = () => {
         inputId="csv-input"
         parserOptions={{ header: true }}
         onFileLoaded={(data, fileInfo) => {
-          if (data.length != 0) {
+          if (data.length != 0 && Object.keys(data[0]).includes("fileName")) {
             Object.keys(data[0]).forEach((key) => {
-              if (!dataFieldsState.dataFields.includes(key)) {
+              if (
+                key != "fileName" &&
+                !dataFieldsState.dataFields.includes(key)
+              ) {
                 dataFieldsDispatch({ type: "ADD", payload: key });
+                // dataTableDispatch({ type: "NEW_FIELD", payload: key });
               }
             });
+            dataTableDispatch({ type: "BULK_UPDATE", payload: data });
           }
         }}
         inputStyle={{ display: "none" }}
