@@ -25,11 +25,13 @@ export const CSVExportButton = () => {
       >
         Download Me
       </CSVLink>
-      <OutlineButton handleOnClick={handleButtonClick}>Export</OutlineButton>
+      <OutlineButton handleOnClick={handleButtonClick}>
+        Export CSV
+      </OutlineButton>
     </div>
   ) : (
     <OutlineButton disabled handleOnClick={() => {}}>
-      Export
+      Export CSV
     </OutlineButton>
   );
 };

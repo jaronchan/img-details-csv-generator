@@ -8,6 +8,7 @@ import { useImages } from "../contexts/images/ImagesState";
 import { DetailsTable } from "../components/table/DetailsTable";
 import { CSVExportButton } from "../components/files/CSVExportButton";
 import { GenerateTableButton } from "../components/table/GenerateTableButton";
+import { CSVImportButton } from "../components/files/CSVImportButton";
 
 export default function Home() {
   return (
@@ -28,14 +29,15 @@ export default function Home() {
             <ImageUploadButton />
           </div>
           <div className="w-1/4">
-            <OutlineButton handleOnClick={() => {}}>CSV</OutlineButton>
+            <GenerateTableButton />
           </div>
           <div className="w-1/4"></div>
         </div>
         <div className="flex mb-4 space-x-2">
           <div className="w-1/4"></div>
+
           <div className="w-1/2">
-            <GenerateTableButton />
+            <CSVImportButton />
           </div>
           <div className="w-1/4"></div>
         </div>

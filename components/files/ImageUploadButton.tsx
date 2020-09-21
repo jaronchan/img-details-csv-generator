@@ -49,7 +49,7 @@ export const ImageUploadButton = () => {
         style={{ display: "none" }}
       />
       <OutlineButton handleOnClick={handleButtonClick}>
-        Image
+        Upload Images
         {imagesState.imageFiles.length == 0 ? null : (
           <span
             className="inline-flex rounded-full bg-blue-700 w-6 h-6 text-white text-xs items-center justify-center"

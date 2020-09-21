@@ -22,7 +22,7 @@ export const GenerateTableButton = () => {
     <OutlineButton handleOnClick={handleButtonClick}>Generate</OutlineButton>
   ) : (
     <OutlineButton disabled={true} handleOnClick={handleButtonClick}>
-      Generate
+      Generate Table
     </OutlineButton>
   );
 };
